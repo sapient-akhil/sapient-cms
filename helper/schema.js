@@ -33,6 +33,7 @@ module.exports = {
     time_to_read: validate.reqstring,
     publish_date: validate.reqDate,
     blog_content: validate.reqstring,
+    slug_url: validate.reqstring,
     image: validate.reqstring,
     seo_fb: validate.reqstring,
     seo_twitter: validate.reqstring,
@@ -65,5 +66,12 @@ module.exports = {
     salary: validate.reqstring,
     job_type: validate.reqId,
     job_category: validate.reqId,
+  }),
+  contactsSchema: joi.object().keys({
+    name: validate.reqstring,
+    email: validate.email,
+    phone: validate.reqstring,
+    subject: validate.reqstring,
+    message: validate.reqstring,
   }),
 };

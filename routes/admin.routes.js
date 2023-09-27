@@ -91,4 +91,9 @@ router.get("/open-positions/:id", Validators.forParams(Schema.params), openPosit
 router.delete("/open-positions/:id", Validators.forParams(Schema.params), openPositionsController.deleteOpenPosition)
 router.put("/open-positions/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.openPositionSchema), openPositionsController.updateOpenPosition)
 
+//contacts routes
+const contactsController = require("../controller/admin/contacts")
+
+router.get("/contacts",verifyAccessTokenforAdmin, contactsController.allContacts)
+
 module.exports = router;

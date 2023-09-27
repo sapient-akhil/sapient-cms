@@ -9,4 +9,5 @@ module.exports = {
   clientsServices: require("./clients/clients.services"),
   jobTypesServices: require("./jobType/jobType.services"),
   openPositionServices: require("./openPositions/openPosition.services"),
+  contactsServices:require("./contacts/contacts.services")
 };

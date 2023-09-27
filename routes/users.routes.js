@@ -31,14 +31,14 @@ router.get("/blogs/:id", Validators.forParams(Schema.params), blogController.one
 //portFolio category routes
 const portFolioCategoryController = require("../controller/website/portFolioCategory")
 
-router.get("/portfolio", portFolioCategoryController.allPortFolioCategorty)
-router.get("/portfolio/:id", Validators.forParams(Schema.params), portFolioCategoryController.onePortFolioCategorty)
+router.get("/portfolio-category", portFolioCategoryController.allPortFolioCategorty)
+router.get("/portfolio-category/:id", Validators.forParams(Schema.params), portFolioCategoryController.onePortFolioCategorty)
 
 //job category routes
 const jobCategortyController = require("../controller/website/jobCategory")
 
-router.get("/jobs", jobCategortyController.allJobCategorty)
-router.get("/jobs/:id", Validators.forParams(Schema.params), jobCategortyController.oneJobCategorty)
+router.get("/job-category", jobCategortyController.allJobCategorty)
+router.get("/job-category/:id", Validators.forParams(Schema.params), jobCategortyController.oneJobCategorty)
 
 //clients routes
 const clientsController = require("../controller/website/clients")
@@ -57,5 +57,10 @@ const openPositionsController = require("../controller/website/openPosition")
 
 router.get("/open-positions", openPositionsController.allOpenPosition)
 router.get("/open-positions/:id", Validators.forParams(Schema.params), openPositionsController.oneOpenPosition)
+
+//contacts routes
+const contactsController = require("../controller/website/contacts")
+
+router.post("/contacts",Validators.forReqBody(Schema.contactsSchema), contactsController.createContacts)
 
 module.exports = router;
