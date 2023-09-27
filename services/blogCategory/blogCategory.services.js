@@ -19,15 +19,6 @@ module.exports = {
             );
         });
     },
-    findbyName: async (name) => {
-        return new Promise(async (resolve) => {
-            return resolve(
-                await blogCategortyModel.findOne(
-                    { name, active: true },
-                )
-            )
-        });
-    },
     findByBlogCategortyId: async (_id) => {
         return new Promise(async (resolve) => {
             return resolve(
@@ -38,11 +29,11 @@ module.exports = {
             );
         });
     },
-    findBlogCategorty: async (link, name) => {
+    findBlogCategorty: async (id, name) => {
         return new Promise(async (resolve) => {
             return resolve(
                 await blogCategortyModel.findOne(
-                    { link, name },
+                    { _id: { $nin: [id] }, name },
                     { __v: 0 }
                 )
             )

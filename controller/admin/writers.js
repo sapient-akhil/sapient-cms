@@ -6,7 +6,7 @@ module.exports = {
     try {
       const req_data = req.body;
 
-      req_data.image = req_data.image ? req_data.image : null
+      req_data.image = req_data.image ? req_data.image : null;
 
       const existData = await writersServices.existData(
         null,
@@ -35,7 +35,7 @@ module.exports = {
   allWriters: async (req, res, next) => {
     try {
       const page = parseInt(req.query.page || 1);
-      const pageSize = parseInt(req.query.pageSize || 2);
+      const pageSize = parseInt(req.query.pageSize || 10);
 
       const total = await writersServices.countWriters();
       const pageCount = Math.ceil(total / pageSize);
@@ -84,7 +84,7 @@ module.exports = {
       const id = req.params.id;
       const req_data = req.body;
 
-      req_data.image = req_data.image ? req_data.image : null
+      req_data.image = req_data.image ? req_data.image : null;
 
       const existData = await writersServices.existData(
         id,
@@ -93,7 +93,10 @@ module.exports = {
       );
 
       if (existData.status) {
-        const writersData = await writersServices.updateWritersData(id, req_data);
+        const writersData = await writersServices.updateWritersData(
+          id,
+          req_data
+        );
         if (!writersData)
           throw createError.NotFound(
             "The writers with the provided ID could not be found. Please ensure the ID is correct and try again"

@@ -3,6 +3,9 @@ const writersModel = require("./writers.model");
 module.exports = {
   findAllWriters: async (page, pageSize) => {
     return new Promise(async (resolve) => {
+      if (page === 0) {
+        return resolve(await writersModel.find({ active: true }, { __v: 0 }));
+      }
       return resolve(
         await writersModel
           .find({ active: true }, { __v: 0 })
@@ -56,14 +59,9 @@ module.exports = {
   },
   findbyEmail: async (email) => {
     return new Promise(async (resolve) => {
-        return resolve(
-            await writersModel.findOne(
-                { email },
-                { __v: 0 }
-            )
-        )
+      return resolve(await writersModel.findOne({ email }, { __v: 0 }));
     });
-},
+  },
   findByWritersId: async (_id) => {
     return new Promise(async (resolve) => {
       return resolve(await writersModel.findOne({ _id }, { __v: 0 }));

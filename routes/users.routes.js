@@ -28,4 +28,34 @@ const blogController = require("../controller/website/blogs")
 router.get("/blogs", blogController.allBlog)
 router.get("/blogs/:id", Validators.forParams(Schema.params), blogController.oneBlog)
 
+//portFolio category routes
+const portFolioCategoryController = require("../controller/website/portFolioCategory")
+
+router.get("/portfolio", portFolioCategoryController.allPortFolioCategorty)
+router.get("/portfolio/:id", Validators.forParams(Schema.params), portFolioCategoryController.onePortFolioCategorty)
+
+//job category routes
+const jobCategortyController = require("../controller/website/jobCategory")
+
+router.get("/jobs", jobCategortyController.allJobCategorty)
+router.get("/jobs/:id", Validators.forParams(Schema.params), jobCategortyController.oneJobCategorty)
+
+//clients routes
+const clientsController = require("../controller/website/clients")
+
+router.get("/clients", clientsController.allClients)
+router.get("/clients/:id", Validators.forParams(Schema.params), clientsController.oneClients)
+
+//jobTypes routes
+const jobTypesController = require("../controller/website/jobTypes")
+
+router.get("/job-types", jobTypesController.allJobTypes)
+router.get("/job-types/:id", Validators.forParams(Schema.params), jobTypesController.oneJobTypes)
+
+//openPositions routes
+const openPositionsController = require("../controller/website/openPosition")
+
+router.get("/open-positions", openPositionsController.allOpenPosition)
+router.get("/open-positions/:id", Validators.forParams(Schema.params), openPositionsController.oneOpenPosition)
+
 module.exports = router;

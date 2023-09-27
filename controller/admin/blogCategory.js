@@ -6,7 +6,7 @@ module.exports = {
         try {
             const req_data = req.body;
 
-            const existBlogCategoryName = await blogCategoryServices.findbyName(req_data.name);
+            const existBlogCategoryName = await blogCategoryServices.findBlogCategorty(null,req_data.name);
             if (existBlogCategoryName) {
                 throw createError.Conflict("Blog category name already exists");
             }
@@ -58,7 +58,7 @@ module.exports = {
             const req_data = req.body;
             const id = req.params.id
 
-            const existBlogCategoryName = await blogCategoryServices.findbyName(req_data.name);
+            const existBlogCategoryName = await blogCategoryServices.findBlogCategorty(id,req_data.name);
             if (existBlogCategoryName) {
                 throw createError.Conflict("Blog category name already exists");
             }

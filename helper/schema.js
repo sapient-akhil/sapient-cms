@@ -39,4 +39,31 @@ module.exports = {
     seo_main: validate.reqstring,
     faqs: validate.reqstring,
   }),
+  portfolioCategorySchema: joi.object().keys({
+    name: validate.reqstring,
+  }),
+  jobCategorySchema: joi.object().keys({
+    name: validate.reqstring,
+  }),
+  clientsSchema: joi.object().keys({
+    name: validate.reqstring,
+    image: validate.reqstring,
+  }),
+  jobTypesSchema: joi.object().keys({
+    name: validate.reqstring,
+  }),
+  openPositionSchema: joi.object().keys({
+    job_title: validate.reqstring,
+    location: validate.reqstring,
+    date: validate.reqDate,
+    description: validate.reqstring,
+    experiences: validate.reqstring,
+    vacancy: validate.reqNumber,
+    deadline: validate.reqDate,
+    working_hours: validate.reqstring,
+    working_days: validate.reqstring,
+    salary: validate.reqstring,
+    job_type: validate.reqId,
+    job_category: validate.reqId,
+  }),
 };

@@ -45,4 +45,50 @@ router.get("/blogs", blogController.allBlog)
 router.get("/blogs/:id", Validators.forParams(Schema.params), blogController.oneBlog)
 router.delete("/blogs/:id", Validators.forParams(Schema.params), blogController.deleteBlog)
 router.put("/blogs/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.blogSchema), blogController.updateBlog)
+
+//portFolio category routes
+const portFolioCategoryController = require("../controller/admin/portFolioCategory")
+
+router.post("/portfolio-category",Validators.forReqBody(Schema.portfolioCategorySchema), portFolioCategoryController.createPortFolioCategorty)
+router.get("/portfolio-category", portFolioCategoryController.allPortFolioCategorty)
+router.get("/portfolio-category/:id", Validators.forParams(Schema.params), portFolioCategoryController.onePortFolioCategorty)
+router.delete("/portfolio-category/:id", Validators.forParams(Schema.params), portFolioCategoryController.deletePortFolioCategorty)
+router.put("/portfolio-category/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.portfolioCategorySchema), portFolioCategoryController.updatePortFolioCategorty)
+
+//job category routes
+const jobCategortyController = require("../controller/admin/jobCategory")
+
+router.post("/job-category",Validators.forReqBody(Schema.jobCategorySchema), jobCategortyController.createJobCategorty)
+router.get("/job-category", jobCategortyController.allJobCategorty)
+router.get("/job-category/:id", Validators.forParams(Schema.params), jobCategortyController.oneJobCategorty)
+router.delete("/job-category/:id", Validators.forParams(Schema.params), jobCategortyController.deleteJobCategorty)
+router.put("/job-category/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.jobCategorySchema), jobCategortyController.updateJobCategorty)
+
+//clients routes
+const clientsController = require("../controller/admin/clients")
+
+router.post("/clients",Validators.forReqBody(Schema.clientsSchema), clientsController.createClients)
+router.get("/clients", clientsController.allClients)
+router.get("/clients/:id", Validators.forParams(Schema.params), clientsController.oneClients)
+router.delete("/clients/:id", Validators.forParams(Schema.params), clientsController.deleteClients)
+router.put("/clients/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.clientsSchema), clientsController.updateClients)
+
+//jobTypes routes
+const jobTypesController = require("../controller/admin/jobTypes")
+
+router.post("/job-types",Validators.forReqBody(Schema.jobTypesSchema), jobTypesController.createJobTypes)
+router.get("/job-types", jobTypesController.allJobTypes)
+router.get("/job-types/:id", Validators.forParams(Schema.params), jobTypesController.oneJobTypes)
+router.delete("/job-types/:id", Validators.forParams(Schema.params), jobTypesController.deleteJobTypes)
+router.put("/job-types/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.jobTypesSchema), jobTypesController.updateJobTypes)
+
+//openPositions routes
+const openPositionsController = require("../controller/admin/openPosition")
+
+router.post("/open-positions",Validators.forReqBody(Schema.openPositionSchema), openPositionsController.createOpenPosition)
+router.get("/open-positions", openPositionsController.allOpenPosition)
+router.get("/open-positions/:id", Validators.forParams(Schema.params), openPositionsController.oneOpenPosition)
+router.delete("/open-positions/:id", Validators.forParams(Schema.params), openPositionsController.deleteOpenPosition)
+router.put("/open-positions/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.openPositionSchema), openPositionsController.updateOpenPosition)
+
 module.exports = router;

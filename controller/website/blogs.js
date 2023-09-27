@@ -1,5 +1,7 @@
 const createError = require("http-errors");
 const { blogServices } = require("../../services/index");
+const { default: mongoose } = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
   allBlog: async (req, res, next) => {
@@ -17,8 +19,9 @@ module.exports = {
   },
   oneBlog: async (req, res, next) => {
     try {
-      const { id } = req.params;
-
+      let id = req.params?.id;
+      id = new ObjectId(id);
+      
       const blog = await blogServices.findByBlogId(id);
       if (!blog)
         throw createError.NotFound(

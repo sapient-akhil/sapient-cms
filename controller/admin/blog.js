@@ -1,5 +1,7 @@
 const createError = require("http-errors");
 const { blogServices } = require("../../services/index");
+const { default: mongoose } = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
   createBlog: async (req, res, next) => {
@@ -29,12 +31,26 @@ module.exports = {
   },
   allBlog: async (req, res, next) => {
     try {
-      const blog = await blogServices.findAllBlog();
+      const page = parseInt(req.query.page || 1);
+      const pageSize = parseInt(req.query.pageSize || 10);
+
+      const total = await blogServices.countBlogs();
+      const pageCount = Math.ceil(total / pageSize);
+
+      const blog = await blogServices.findAllBlog(page, pageSize);
 
       res.status(201).send({
         success: true,
         message: "All blog is fetch successfully.",
         data: blog,
+        meta: {
+          pagination: {
+            page,
+            pageSize,
+            pageCount,
+            total,
+          },
+        },
       });
     } catch (error) {
       next(error);
@@ -42,7 +58,8 @@ module.exports = {
   },
   oneBlog: async (req, res, next) => {
     try {
-      const { id } = req.params;
+      let id = req.params?.id;
+      id = new ObjectId(id);
 
       const blog = await blogServices.findByBlogId(id);
       if (!blog)
