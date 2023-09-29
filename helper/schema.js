@@ -34,6 +34,7 @@ module.exports = {
     publish_date: validate.reqDate,
     blog_content: validate.reqstring,
     slug_url: validate.reqstring,
+    contact_description: validate.reqstring,
     image: validate.reqstring,
     seo_fb: validate.reqstring,
     seo_twitter: validate.reqstring,

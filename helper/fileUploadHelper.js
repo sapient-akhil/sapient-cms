@@ -17,7 +17,7 @@ module.exports.uploadMaterialToAWS = (fileData, path) => {
       "image/bmp",
       "application/pdf",
     ];
-    const allowedExtension = ["png", "jpg", "jpeg", "svg"];
+    const allowedExtension = ["png", "jpg", "jpeg", "svg","webp"];
     const fileExt = fileData.name
       .split(".")
       [fileData.name.split(".").length - 1].toLowerCase();

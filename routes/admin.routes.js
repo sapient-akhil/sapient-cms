@@ -94,7 +94,8 @@ router.put("/open-positions/:id", Validators.forParams(Schema.params),Validators
 //contacts routes
 const contactsController = require("../controller/admin/contacts")
 
-router.get("/contacts",verifyAccessTokenforAdmin, contactsController.allContacts)
+router.get("/contacts", contactsController.allContacts)
+router.patch("/contacts/:id", contactsController.updateViewFieldInContacts)
 
 //portFolio routes
 const portFolioController = require("../controller/admin/portFolio")

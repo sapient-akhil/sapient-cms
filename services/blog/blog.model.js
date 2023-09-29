@@ -34,6 +34,10 @@ const blogModel = new mongoose.Schema(
       type: String,
       required: [true, "blog_content are required"],
     },
+    contact_description: {
+      type: String,
+      required: [true, "blog_content are required"],
+    },
     image: {
       type: String,
       required: [true, "image are required"],

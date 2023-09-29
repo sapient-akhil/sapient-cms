@@ -22,6 +22,10 @@ const contactsModel = new mongoose.Schema(
       type: String,
       required: [true, "message are required"],
     },
+    view: {
+      type: Boolean,
+      default: false,
+    },
     active: {
       type: Boolean,
       default: true,
