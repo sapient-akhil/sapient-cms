@@ -13,7 +13,7 @@ var cors = require("cors");
 app.use(cors());
 
 app.all("/", (req, res) => {
-  res.send("sapient-cms is strat successfully...");
+  res.send("Sapient-cms is strat successfully...");
 });
 
 app.use("/api/admin", require("./routes/admin.routes"));
@@ -35,5 +35,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

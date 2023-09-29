@@ -10,7 +10,7 @@ module.exports = {
 
       res.status(201).send({
         success: true,
-        message: "Assigned project is created successfully.",
+        message: "Counter is created successfully.",
         data: counters,
       });
     } catch (error) {
@@ -23,7 +23,7 @@ module.exports = {
 
       res.status(201).send({
         success: true,
-        message: "All assigned projects fetched successfully.",
+        message: "All counters fetched successfully.",
         data: counters,
       });
     } catch (error) {
@@ -37,12 +37,12 @@ module.exports = {
       const counters = await countersServices.findByCountersId(id);
       if (!counters)
         throw createError.NotFound(
-          "The assigned project with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The counter with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "One assigned project is fetch successfully.",
+        message: "One counter is fetch successfully.",
         data: counters,
       });
     } catch (error) {
@@ -57,12 +57,12 @@ module.exports = {
       const counters = await countersServices.updateCounters(id, req_data);
       if (!counters)
         throw createError.NotFound(
-          "The assigned project with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The counter with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "Assigned project is update successfully.",
+        message: "Counter is update successfully.",
         data: counters,
       });
     } catch (error) {
@@ -76,12 +76,12 @@ module.exports = {
       const counters = await countersServices.deleteCounters(id);
       if (!counters)
         throw createError.NotFound(
-          "The assigned project with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The counter with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "Assigned project is delete successfully",
+        message: "Counter is delete successfully",
         data: counters,
       });
     } catch (error) {

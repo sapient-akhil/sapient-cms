@@ -8,7 +8,7 @@ module.exports = {
 
       res.status(201).send({
         success: true,
-        message: "All Job type is fetch successfully.",
+        message: "All job type is fetch successfully.",
         data: jobTypes,
       });
     } catch (error) {
@@ -22,7 +22,7 @@ module.exports = {
       const jobTypes = await jobTypesServices.findByJobTypesId(id);
       if (!jobTypes)
         throw createError.NotFound(
-          "The Job type with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The job type with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({

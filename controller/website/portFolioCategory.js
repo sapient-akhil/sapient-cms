@@ -8,7 +8,7 @@ module.exports = {
 
       res.status(201).send({
         success: true,
-        message: "All PortFolio category is fetch successfully.",
+        message: "All portfolio category is fetch successfully.",
         data: portFolioCategorty,
       });
     } catch (error) {
@@ -22,12 +22,12 @@ module.exports = {
       const portFolioCategorty =await portFolioServices.findByPortFolioCategortyId(id);
       if (!portFolioCategorty)
         throw createError.NotFound(
-          "The PortFolio category with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The portfolio category with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "One PortFolio category is fetch successfully.",
+        message: "One portfolio category is fetch successfully.",
         data: portFolioCategorty,
       });
     } catch (error) {

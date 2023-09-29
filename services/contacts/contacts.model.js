@@ -4,23 +4,23 @@ const contactsModel = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "name are required"],
+      required: [true, "Name are required"],
     },
     email: {
       type: String,
-      required: [true, "email are required"],
+      required: [true, "Email are required"],
     },
     phone: {
-      type: String,
-      required: [true, "phone are required"],
+      type: Number,
+      required: [true, "Phone are required"],
     },
     subject: {
       type: String,
-      required: [true, "subject are required"],
+      required: [true, "Subject are required"],
     },
     message: {
       type: String,
-      required: [true, "message are required"],
+      required: [true, "Message are required"],
     },
     view: {
       type: Boolean,

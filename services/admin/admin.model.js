@@ -4,19 +4,19 @@ const adminModel = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: [true, "username are require"],
+      required: [true, "Username are require"],
     },
     email: {
       type: String,
-      required: [true, "email are require"],
+      required: [true, "Email are require"],
     },
     display_name: {
       type: String,
-      required: [true, "display_name are require"],
+      required: [true, "Display name are require"],
     },
     password: {
       type: String,
-      required: [true, "password are require"],
+      required: [true, "Password are require"],
     },
     image: {
       type: String,

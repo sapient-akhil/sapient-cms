@@ -10,7 +10,7 @@ module.exports = {
 
       res.status(201).send({
         success: true,
-        message: "All Open position is fetch successfully.",
+        message: "All open position is fetch successfully.",
         data: openPosition,
       });
     } catch (error) {
@@ -25,12 +25,12 @@ module.exports = {
       const openPosition = await openPositionServices.findByOpenPositionId(id);
       if (!openPosition)
         throw createError.NotFound(
-          "The Open position with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The open position with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "One Open position is fetch successfully.",
+        message: "One open position is fetch successfully.",
         data: openPosition,
       });
     } catch (error) {

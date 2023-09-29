@@ -6,7 +6,7 @@ const ObjectId = mongoose.Types.ObjectId;
 module.exports = {
   allBlog: async (req, res, next) => {
     try {
-      const blog = await blogServices.findAllBlog();
+      const blog = await blogServices.findAllBlogForUser();
 
       res.status(201).send({
         success: true,

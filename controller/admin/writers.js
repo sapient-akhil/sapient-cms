@@ -11,7 +11,7 @@ module.exports = {
       const existData = await writersServices.existData(
         null,
         req_data.email,
-        req_data.username
+        req_data.writername
       );
 
       if (existData.status) {
@@ -19,7 +19,7 @@ module.exports = {
 
         res.status(201).json({
           success: true,
-          message: "User is created successfully.",
+          message: "Writer is created successfully.",
           data: writersData,
         });
       } else {
@@ -41,11 +41,11 @@ module.exports = {
       const pageCount = Math.ceil(total / pageSize);
 
       const writers = await writersServices.findAllWriters(page, pageSize);
-      if (!writers) throw createError.NotFound("No any user is found.");
+      if (!writers) throw createError.NotFound("No any writer is found.");
 
       res.status(201).send({
         success: true,
-        message: "All user data is fetch successfully.",
+        message: "All writer data is fetch successfully.",
         data: writers,
         meta: {
           pagination: {
@@ -67,12 +67,12 @@ module.exports = {
       const writersData = await writersServices.findByWritersId(id);
       if (!writersData)
         throw createError.NotFound(
-          "The writers with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The writer with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "One user data is fetch successfully.",
+        message: "One writer data is fetch successfully.",
         data: writersData,
       });
     } catch (error) {
@@ -89,7 +89,7 @@ module.exports = {
       const existData = await writersServices.existData(
         id,
         req_data.email,
-        req_data.username
+        req_data.writername
       );
 
       if (existData.status) {
@@ -99,12 +99,12 @@ module.exports = {
         );
         if (!writersData)
           throw createError.NotFound(
-            "The writers with the provided ID could not be found. Please ensure the ID is correct and try again"
+            "The writer with the provided ID could not be found. Please ensure the ID is correct and try again"
           );
 
         res.status(201).json({
           success: true,
-          message: "User is update successfully.",
+          message: "Writer is update successfully.",
           data: writersData,
         });
       } else {
@@ -124,12 +124,12 @@ module.exports = {
       const writers = await writersServices.deleteWritersData(id);
       if (!writers)
         throw createError.NotFound(
-          "The writers with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The writer with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "User is delete successfully",
+        message: "Writer is delete successfully",
         data: writers,
       });
     } catch (error) {

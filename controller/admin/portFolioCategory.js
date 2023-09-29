@@ -8,14 +8,14 @@ module.exports = {
 
             const existPortFolioCategoryName = await portFolioServices.findPortFolioCategorty(null,req_data.name);
             if (existPortFolioCategoryName) {
-                throw createError.Conflict("PortFolio category name already exists");
+                throw createError.Conflict("Portfolio category name already exists");
             }
 
             const portFolioCategortyData = await portFolioServices.createPortFolioCategorty(req_data)
 
             res.status(201).send({
                 success: true,
-                message: "PortFolio category is created successfully.",
+                message: "Portfolio category is created successfully.",
                 data: portFolioCategortyData
             })
         } catch (error) {
@@ -29,7 +29,7 @@ module.exports = {
 
             res.status(201).send({
                 success: true,
-                message: "All PortFolio category is fetch successfully.",
+                message: "All portfolio category is fetch successfully.",
                 data: portFolioCategorty
             })
         } catch (error) {
@@ -42,11 +42,11 @@ module.exports = {
             const { id } = req.params
 
             const portFolioCategorty = await portFolioServices.findByPortFolioCategortyId(id)
-            if (!portFolioCategorty) throw createError.NotFound("The PortFolio category with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!portFolioCategorty) throw createError.NotFound("The portfolio category with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
-                message: "One PortFolio category is fetch successfully.",
+                message: "One portfolio category is fetch successfully.",
                 data: portFolioCategorty
             })
         } catch (error) {
@@ -60,15 +60,15 @@ module.exports = {
 
             const existPortFolioCategoryName = await portFolioServices.findPortFolioCategorty(id,req_data.name);
             if (existPortFolioCategoryName) {
-                throw createError.Conflict("PortFolio category name already exists");
+                throw createError.Conflict("Portfolio category name already exists");
             }
 
             const portFolioCategortyData = await portFolioServices.updatePortFolioCategorty(id, req_data)
-            if (!portFolioCategortyData.length) throw createError.NotFound("The PortFolio category with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!portFolioCategortyData.length) throw createError.NotFound("The Portfolio category with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
-                message: "PortFolio category is update successfully.",
+                message: "Portfolio category is update successfully.",
                 data: portFolioCategortyData
             })
         } catch (error) {
@@ -81,11 +81,11 @@ module.exports = {
             const { id } = req.params
 
             const portFolioCategorty = await portFolioServices.deletePortFolioCategorty(id)
-            if (!portFolioCategorty) throw createError.NotFound("The PortFolio Category with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!portFolioCategorty) throw createError.NotFound("The Portfolio Category with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
-                message: "PortFolio category is delete successfully",
+                message: "Portfolio category is delete successfully",
                 data: portFolioCategorty
             })
         } catch (error) {

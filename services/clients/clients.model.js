@@ -4,11 +4,11 @@ const clientModel = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "name are required"],
+      required: [true, "Name are required"],
     },
     image: {
       type: String,
-      required: [true, "image are required"],
+      required: [true, "Image are required"],
     },
     active: {
       type: Boolean,

@@ -4,51 +4,51 @@ const openPositionModel = new mongoose.Schema(
   {
     job_title: {
       type: String,
-      required: [true, "job_title are required"],
+      required: [true, "Job title are required"],
     },
     location: {
       type: String,
-      required: [true, "location are required"],
+      required: [true, "Location are required"],
     },
     date: {
       type: Date,
-      required: [true, "date are required"],
+      required: [true, "Date are required"],
     },
     description: {
       type: String,
-      required: [true, "description are required"],
+      required: [true, "Description are required"],
     },
     experiences: {
       type: String,
-      required: [true, "experiences are required"],
+      required: [true, "Experiences are required"],
     },
     vacancy: {
       type: Number,
-      required: [true, "vacancy are required"],
+      required: [true, "Vacancy are required"],
     },
     deadline: {
       type: Date,
-      required: [true, "deadline are required"],
+      required: [true, "Deadline are required"],
     },
     working_hours: {
       type: String,
-      required: [true, "working_hours are required"],
+      required: [true, "Working hours are required"],
     },
     working_days: {
       type: String,
-      required: [true, "working_days are required"],
+      required: [true, "Working days are required"],
     },
     salary: {
       type: String,
-      required: [true, "salary are required"],
+      required: [true, "Salary are required"],
     },
     job_type: {
       type: mongoose.Types.ObjectId,
-      required: [true, "job_type are required"],
+      required: [true, "Job type are required"],
     },
     job_category: {
       type: mongoose.Types.ObjectId,
-      required: [true, "job_category are required"],
+      required: [true, "Job category are required"],
     },
     active: {
       type: Boolean,

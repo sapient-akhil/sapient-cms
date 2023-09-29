@@ -29,7 +29,7 @@ module.exports = {
 
             res.status(201).send({
                 success: true,
-                message: "All Job type is fetch successfully.",
+                message: "All job type is fetch successfully.",
                 data: jobTypes
             })
         } catch (error) {
@@ -42,11 +42,11 @@ module.exports = {
             const { id } = req.params
 
             const jobTypes = await jobTypesServices.findByJobTypesId(id)
-            if (!jobTypes) throw createError.NotFound("The Job type with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!jobTypes) throw createError.NotFound("The job type with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
-                message: "One Job type is fetch successfully.",
+                message: "One job type is fetch successfully.",
                 data: jobTypes
             })
         } catch (error) {
@@ -64,7 +64,7 @@ module.exports = {
             }
 
             const jobTypesData = await jobTypesServices.updateJobTypes(id, req_data)
-            if (!jobTypesData.length) throw createError.NotFound("The Job type with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!jobTypesData.length) throw createError.NotFound("The job type with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
@@ -81,7 +81,7 @@ module.exports = {
             const { id } = req.params
 
             const jobTypes = await jobTypesServices.deleteJobTypes(id)
-            if (!jobTypes) throw createError.NotFound("The Job types with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!jobTypes) throw createError.NotFound("The job types with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,

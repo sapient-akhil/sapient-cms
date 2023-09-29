@@ -10,6 +10,7 @@ module.exports = {
       return resolve(
         await contactsModel
           .find(query, { __v: 0 })
+          .sort({createdAt:-1})
           .skip((page - 1) * pageSize)
           .limit(pageSize * 1)
       );

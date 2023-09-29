@@ -16,7 +16,7 @@ module.exports = {
 
         res.status(201).json({
           success: true,
-          message: "User is created successfully.",
+          message: "Writer is created successfully.",
           data: writersData,
         });
       } else {
@@ -38,11 +38,11 @@ module.exports = {
       const pageCount = Math.ceil(total / pageSize);
 
       const writers = await writersServices.findAllWriters(page, pageSize);
-      if (!writers) throw createError.NotFound("No any user is found.");
+      if (!writers) throw createError.NotFound("No any Writer is found.");
 
       res.status(201).send({
         success: true,
-        message: "All user data is fetch successfully.",
+        message: "All Writers data is fetch successfully.",
         data: writers,
         meta: {
           pagination: {
@@ -64,12 +64,12 @@ module.exports = {
       const writersData = await writersServices.findByWritersId(id);
       if (!writersData)
         throw createError.NotFound(
-          "The writers with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The writer with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({
         success: true,
-        message: "One user data is fetch successfully.",
+        message: "One Writer data is fetch successfully.",
         data: writersData,
       });
     } catch (error) {

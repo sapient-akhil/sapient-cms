@@ -25,7 +25,7 @@ module.exports = {
       const portFolio = await portFolioServices.findByPortFolioId(id);
       if (!portFolio)
         throw createError.NotFound(
-          "The Port folio with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The port folio with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({

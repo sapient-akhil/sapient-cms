@@ -4,11 +4,11 @@ const countersModel = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "name are required"],
+      required: [true, "Name are required"],
     },
     numbers: {
       type: String,
-      required: [true, "numbers are required"],
+      required: [true, "Numbers are required"],
     },
     active: {
       type: Boolean,

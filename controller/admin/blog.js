@@ -113,7 +113,7 @@ module.exports = {
       const blog = await blogServices.deleteBlog(id);
       if (!blog)
         throw createError.NotFound(
-          "The Blog with the provided ID could not be found. Please ensure the ID is correct and try again"
+          "The blog with the provided ID could not be found. Please ensure the ID is correct and try again"
         );
 
       res.status(201).send({

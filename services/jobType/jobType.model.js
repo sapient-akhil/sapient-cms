@@ -4,7 +4,7 @@ const jobTypesModel = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "name are required"],
+      required: [true, "Name are required"],
     },
     active: {
       type: Boolean,

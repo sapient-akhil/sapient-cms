@@ -22,7 +22,7 @@ module.exports = {
             const { id } = req.params
 
             const jobCategorty = await jobCategoryServices.findByJobCategortyId(id)
-            if (!jobCategorty) throw createError.NotFound("The Job category with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!jobCategorty) throw createError.NotFound("The job category with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,

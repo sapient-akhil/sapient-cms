@@ -69,8 +69,81 @@ module.exports = {
               },
             },
           ])
+          .sort({ publish_date: -1 })
           .skip((page - 1) * pageSize)
           .limit(pageSize * 1)
+      );
+    });
+  },
+  findAllBlogForUser: async (page, pageSize) => {
+    return new Promise(async (resolve) => {
+      return resolve(
+        await blogModel
+          .aggregate([
+            {
+              $match: { active: true },
+            },
+            {
+              $lookup: {
+                from: "blogcategories",
+                localField: "blog_category",
+                foreignField: "_id",
+                as: "blogcategories",
+              },
+            },
+            {
+              $addFields: {
+                blogcategories: {
+                  $filter: {
+                    input: "$blogcategories",
+                    as: "category",
+                    cond: { $eq: ["$$category.active", true] }, // Filter active blog categories
+                  },
+                },
+              },
+            },
+            {
+              $lookup: {
+                from: "writers",
+                localField: "writer",
+                foreignField: "_id",
+                as: "writers",
+              },
+            },
+            {
+              $addFields: {
+                writers: {
+                  $filter: {
+                    input: "$writers",
+                    as: "writer",
+                    cond: { $eq: ["$$writer.active", true] }, // Filter active writers
+                  },
+                },
+              },
+            },
+            {
+              $project: {
+                _id: 1,
+                blog_title: 1,
+                tldr: 1,
+                time_to_read: 1,
+                publish_date: 1,
+                blog_content: 1,
+                image: 1,
+                seo_fb: 1,
+                seo_twitter: 1,
+                slug_url: 1,
+                seo_main: 1,
+                faqs: 1,
+                contact_description: 1,
+                blogCategoryId: { $arrayElemAt: ["$blogcategories._id", 0] },
+                blogCategoryName: { $arrayElemAt: ["$blogcategories.name", 0] },
+                writersId: { $arrayElemAt: ["$writers._id", 0] },
+                writersUsername: { $arrayElemAt: ["$writers.username", 0] },
+              },
+            },
+          ])
+          .sort({ publish_date: -1 })
       );
     });
   },

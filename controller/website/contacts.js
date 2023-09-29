@@ -10,7 +10,7 @@ module.exports = {
 
       res.status(201).send({
         success: true,
-        message: "Assigned project is created successfully.",
+        message: "Message sent successfully",
         data: contacts,
       });
     } catch (error) {

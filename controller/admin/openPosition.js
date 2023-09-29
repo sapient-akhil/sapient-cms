@@ -26,7 +26,7 @@ module.exports = {
 
             res.status(201).send({
                 success: true,
-                message: "All Open position is fetch successfully.",
+                message: "All open position is fetch successfully.",
                 data: openPosition
             })
         } catch (error) {
@@ -40,11 +40,11 @@ module.exports = {
             id = new ObjectId(id);
 
             const openPosition = await openPositionServices.findByOpenPositionId(id)
-            if (!openPosition) throw createError.NotFound("The Open position with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!openPosition) throw createError.NotFound("The open position with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
-                message: "One Open position is fetch successfully.",
+                message: "One open position is fetch successfully.",
                 data: openPosition
             })
         } catch (error) {
@@ -57,7 +57,7 @@ module.exports = {
             const id = req.params.id
 
             const openPositionData = await openPositionServices.updateOpenPosition(id, req_data)
-            if (!openPositionData.length) throw createError.NotFound("The Open position with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!openPositionData.length) throw createError.NotFound("The open position with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
@@ -74,7 +74,7 @@ module.exports = {
             const { id } = req.params
 
             const openPosition = await openPositionServices.deleteOpenPosition(id)
-            if (!openPosition) throw createError.NotFound("The Open positions with the provided ID could not be found. Please ensure the ID is correct and try again")
+            if (!openPosition) throw createError.NotFound("The open positions with the provided ID could not be found. Please ensure the ID is correct and try again")
 
             res.status(201).send({
                 success: true,
