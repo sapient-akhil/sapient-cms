@@ -37,4 +37,20 @@ module.exports = {
       next(error);
     }
   },
+  findBlogBySlug: async (req, res, next) => {
+    try {
+      const slug_url = req.params.slug;
+
+      const blog = await blogServices.findBlogBySlug(slug_url);
+      if (!blog) throw createError.NotFound("This slug is not exist");
+
+      res.status(201).send({
+        success: true,
+        message: "get all the blog",
+        data: blog,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 };

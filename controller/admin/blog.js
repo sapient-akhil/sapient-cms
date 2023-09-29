@@ -18,6 +18,9 @@ module.exports = {
       req_data.seo_twitter = seo_twitter;
       req_data.seo_main = seo_main;
 
+      const existSlug = await blogServices.findSlug(null, req_data.slug_url);
+      if (existSlug) throw createError.NotFound("Slug is already exist");
+
       const blog = await blogServices.createBlog(req_data);
 
       res.status(201).send({
@@ -90,6 +93,9 @@ module.exports = {
       req_data.seo_fb = seo_fb;
       req_data.seo_twitter = seo_twitter;
       req_data.seo_main = seo_main;
+
+      const existSlug = await blogServices.findSlug(id, req_data.slug_url);
+      if (existSlug) throw createError.NotFound("Slug is already exist");
 
       const blog = await blogServices.updateBlog(id, req_data);
       if (!blog)

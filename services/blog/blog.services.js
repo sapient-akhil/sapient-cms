@@ -148,7 +148,6 @@ module.exports = {
     });
   },
   createBlog: async (req_data) => {
-    console.log("reqefedrbvd", req_data);
     return new Promise(async (resolve) => {
       const data = await blogModel.insertMany({ ...req_data });
       return resolve(data);
@@ -160,6 +159,22 @@ module.exports = {
       return resolve(await blogModel.countDocuments({ active: true }));
     });
   },
+  findBlogBySlug: async (slug_url) => {
+    return new Promise(async (resolve) => {
+      const data = await blogModel.findOne({ slug_url });
+      return resolve(data);
+    });
+  },
+  findSlug: async (id, slug_url) => {
+    return new Promise(async (resolve) => {
+        return resolve(
+            await blogModel.findOne(
+                { _id: { $nin: [id] }, slug_url },
+                { __v: 0 }
+            )
+        )
+    });
+},
   updateBlog: async (_id, req_data) => {
     return new Promise(async (resolve) => {
       const data = await blogModel.findByIdAndUpdate({ _id }, { ...req_data });
@@ -216,7 +231,6 @@ module.exports = {
       );
     });
   },
-
   deleteBlog: async (_id) => {
     return new Promise(async (resolve) => {
       await blogModel.updateOne({ _id }, { active: false }, { new: true });
