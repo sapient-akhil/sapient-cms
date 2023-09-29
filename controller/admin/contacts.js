@@ -5,17 +5,62 @@ module.exports = {
   allContacts: async (req, res, next) => {
     try {
       const view = req.query.view;
-      const contacts = await contactsServices.findAllContacts(view);
+
+      const page = parseInt(req.query.page || 1);
+      const pageSize = parseInt(req.query.pageSize || 10);
+
+      const total = await contactsServices.countContacts(view);
+      const pageCount = Math.ceil(total / pageSize);
+
+      const contacts = await contactsServices.findAllContacts(
+        view,
+        page,
+        pageSize
+      );
 
       res.status(201).send({
         success: true,
         message: "All contacts fetched successfully.",
         data: contacts,
+        meta: {
+          pagination: {
+            page,
+            pageSize,
+            pageCount,
+            total,
+          },
+        },
       });
     } catch (error) {
       next(error);
     }
   },
+
+  // allBlog: async (req, res, next) => {
+  //   try {
+
+  //     const total = await blogServices.countBlogs();
+  //     const pageCount = Math.ceil(total / pageSize);
+
+  //     const blog = await blogServices.findAllBlog(page, pageSize);
+
+  //     res.status(201).send({
+  //       success: true,
+  //       message: "All blog is fetch successfully.",
+  //       data: blog,
+  //       meta: {
+  //         pagination: {
+  //           page,
+  //           pageSize,
+  //           pageCount,
+  //           total,
+  //         },
+  //       },
+  //     });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
   updateViewFieldInContacts: async (req, res, next) => {
     try {
       const { id } = req.params;
