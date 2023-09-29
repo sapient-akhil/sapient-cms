@@ -17,11 +17,33 @@ module.exports = {
             },
           },
           {
+            $addFields: {
+              jobTypes: {
+                $filter: {
+                  input: "$jobTypes",
+                  as: "jobType",
+                  cond: { $eq: ["$$jobType.active", true] }, // Filter active job types
+                },
+              },
+            },
+          },
+          {
             $lookup: {
               from: "jobcategories",
               localField: "job_category",
               foreignField: "_id",
               as: "jobcategory",
+            },
+          },
+          {
+            $addFields: {
+              jobcategory: {
+                $filter: {
+                  input: "$jobcategory",
+                  as: "category",
+                  cond: { $eq: ["$$category.active", true] }, // Filter active job categories
+                },
+              },
             },
           },
           {
@@ -37,7 +59,7 @@ module.exports = {
               working_hours: 1,
               working_days: 1,
               salary: 1,
-              jo_types_id: { $arrayElemAt: ["$jobTypes._id", 0] },
+              job_types_id: { $arrayElemAt: ["$jobTypes._id", 0] },
               job_types_name: { $arrayElemAt: ["$jobTypes.name", 0] },
               job_category_id: { $arrayElemAt: ["$jobcategory._id", 0] },
               job_category_name: { $arrayElemAt: ["$jobcategory.name", 0] },
@@ -71,11 +93,33 @@ module.exports = {
             },
           },
           {
+            $addFields: {
+              jobTypes: {
+                $filter: {
+                  input: "$jobTypes",
+                  as: "jobType",
+                  cond: { $eq: ["$$jobType.active", true] }, // Filter active job types
+                },
+              },
+            },
+          },
+          {
             $lookup: {
               from: "jobcategories",
               localField: "job_category",
               foreignField: "_id",
               as: "jobcategory",
+            },
+          },
+          {
+            $addFields: {
+              jobcategory: {
+                $filter: {
+                  input: "$jobcategory",
+                  as: "category",
+                  cond: { $eq: ["$$category.active", true] }, // Filter active job categories
+                },
+              },
             },
           },
           {
@@ -91,7 +135,7 @@ module.exports = {
               working_hours: 1,
               working_days: 1,
               salary: 1,
-              jo_types_id: { $arrayElemAt: ["$jobTypes._id", 0] },
+              job_types_id: { $arrayElemAt: ["$jobTypes._id", 0] },
               job_types_name: { $arrayElemAt: ["$jobTypes.name", 0] },
               job_category_id: { $arrayElemAt: ["$jobcategory._id", 0] },
               job_category_name: { $arrayElemAt: ["$jobcategory.name", 0] },

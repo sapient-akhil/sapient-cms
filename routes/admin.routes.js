@@ -96,4 +96,13 @@ const contactsController = require("../controller/admin/contacts")
 
 router.get("/contacts",verifyAccessTokenforAdmin, contactsController.allContacts)
 
+//portFolio routes
+const portFolioController = require("../controller/admin/portFolio")
+
+router.post("/portfolio",Validators.forReqBody(Schema.portFolioSchema), portFolioController.createPortFolio)
+router.get("/portfolio", portFolioController.allPortFolio)
+router.get("/portfolio/:id", Validators.forParams(Schema.params), portFolioController.onePortFolio)
+router.delete("/portfolio/:id", Validators.forParams(Schema.params), portFolioController.deletePortFolio)
+router.put("/portfolio/:id", Validators.forParams(Schema.params),Validators.forReqBody(Schema.portFolioSchema), portFolioController.updatePortFolio)
+
 module.exports = router;

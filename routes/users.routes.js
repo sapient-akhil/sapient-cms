@@ -63,4 +63,10 @@ const contactsController = require("../controller/website/contacts")
 
 router.post("/contacts",Validators.forReqBody(Schema.contactsSchema), contactsController.createContacts)
 
+//portFolio routes
+const portFolioController = require("../controller/website/portFolio")
+
+router.get("/portfolio", portFolioController.allPortFolio)
+router.get("/portfolio/:id", Validators.forParams(Schema.params), portFolioController.onePortFolio)
+
 module.exports = router;

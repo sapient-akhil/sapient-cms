@@ -18,11 +18,33 @@ module.exports = {
               },
             },
             {
+              $addFields: {
+                blogcategories: {
+                  $filter: {
+                    input: "$blogcategories",
+                    as: "category",
+                    cond: { $eq: ["$$category.active", true] }, // Filter active blog categories
+                  },
+                },
+              },
+            },
+            {
               $lookup: {
                 from: "writers",
                 localField: "writer",
                 foreignField: "_id",
                 as: "writers",
+              },
+            },
+            {
+              $addFields: {
+                writers: {
+                  $filter: {
+                    input: "$writers",
+                    as: "writer",
+                    cond: { $eq: ["$$writer.active", true] }, // Filter active writers
+                  },
+                },
               },
             },
             {
