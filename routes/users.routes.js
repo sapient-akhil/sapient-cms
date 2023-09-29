@@ -28,6 +28,7 @@ const blogController = require("../controller/website/blogs")
 router.get("/blogs", blogController.allBlog)
 router.get("/blogs/:id", Validators.forParams(Schema.params), blogController.oneBlog)
 router.get("/blogs/slug/:slug", blogController.findBlogBySlug)
+router.get("/blogs/category/:category", blogController.findBlogByBlogCategory)
 
 //portFolio category routes
 const portFolioCategoryController = require("../controller/website/portFolioCategory")

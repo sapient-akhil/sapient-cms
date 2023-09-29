@@ -159,22 +159,114 @@ module.exports = {
       return resolve(await blogModel.countDocuments({ active: true }));
     });
   },
-  findBlogBySlug: async (slug_url) => {
+  findBlogBySlug: async (slug) => {
     return new Promise(async (resolve) => {
-      const data = await blogModel.findOne({ slug_url });
-      return resolve(data);
+      return resolve(
+        await blogModel.aggregate([
+          {
+            $match: {
+              slug_url: slug, // Assuming you are using Mongoose
+            },
+          },
+          {
+            $lookup: {
+              from: "blogcategories",
+              localField: "blog_category",
+              foreignField: "_id",
+              as: "blogcategories",
+            },
+          },
+          {
+            $lookup: {
+              from: "writers",
+              localField: "writer",
+              foreignField: "_id",
+              as: "writers",
+            },
+          },
+          {
+            $project: {
+              _id: 1,
+              blog_title: 1,
+              tldr: 1,
+              time_to_read: 1,
+              publish_date: 1,
+              blog_content: 1,
+              image: 1,
+              slug_url: 1,
+              seo_fb: 1,
+              seo_twitter: 1,
+              seo_main: 1,
+              faqs: 1,
+              contact_description: 1,
+              blogCategoryId: { $arrayElemAt: ["$blogcategories._id", 0] },
+              blogCategoryName: { $arrayElemAt: ["$blogcategories.name", 0] },
+              writersId: { $arrayElemAt: ["$writers._id", 0] },
+              writersimage: { $arrayElemAt: ["$writers.image", 0] },
+            },
+          },
+        ])
+      );
     });
   },
   findSlug: async (id, slug_url) => {
     return new Promise(async (resolve) => {
-        return resolve(
-            await blogModel.findOne(
-                { _id: { $nin: [id] }, slug_url },
-                { __v: 0 }
-            )
-        )
+      return resolve(
+        await blogModel.findOne({ _id: { $nin: [id] }, slug_url }, { __v: 0 })
+      );
     });
-},
+  },
+  findBlogByBlogCategorty: async (category) => {
+    return new Promise(async (resolve) => {
+      return resolve(
+        await blogModel.aggregate([
+          {
+            $lookup: {
+              from: "blogcategories",
+              localField: "blog_category",
+              foreignField: "_id",
+              as: "blogcategories",
+            },
+          },
+          {
+            $match: {
+              "blogcategories.name": category, // Assuming you are using Mongoose
+            },
+          },
+          {
+            $lookup: {
+              from: "writers",
+              localField: "writer",
+              foreignField: "_id",
+              as: "writers",
+            },
+          },
+          {
+            $project: {
+              _id: 1,
+              blog_title: 1,
+              tldr: 1,
+              time_to_read: 1,
+              publish_date: 1,
+              blog_content: 1,
+              image: 1,
+              slug_url: 1,
+              seo_fb: 1,
+              seo_twitter: 1,
+              seo_main: 1,
+              faqs: 1,
+              contact_description: 1,
+              blogCategoryId: { $arrayElemAt: ["$blogcategories._id", 0] },
+              blogCategoryName: { $arrayElemAt: ["$blogcategories.name", 0] },
+              writersId: { $arrayElemAt: ["$writers._id", 0] },
+              writersimage: { $arrayElemAt: ["$writers.image", 0] },
+            },
+          },
+          
+        ])
+      );
+    });
+  },
   updateBlog: async (_id, req_data) => {
     return new Promise(async (resolve) => {
       const data = await blogModel.findByIdAndUpdate({ _id }, { ...req_data });

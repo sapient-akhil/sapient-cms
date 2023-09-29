@@ -21,7 +21,7 @@ module.exports = {
     try {
       let id = req.params?.id;
       id = new ObjectId(id);
-      
+
       const blog = await blogServices.findByBlogId(id);
       if (!blog)
         throw createError.NotFound(
@@ -43,6 +43,23 @@ module.exports = {
 
       const blog = await blogServices.findBlogBySlug(slug_url);
       if (!blog) throw createError.NotFound("This slug is not exist");
+
+      res.status(201).send({
+        success: true,
+        message: "get all the blog",
+        data: blog,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  findBlogByBlogCategory: async (req, res, next) => {
+    try {
+      const blog_category = req.params.category;
+
+      const blog = await blogServices.findBlogByBlogCategorty(blog_category);
+      // console.log("blog",blog[0].blogCategoryName)
+      if (blog.length === 0) throw createError.NotFound("Blog category is not exist");
 
       res.status(201).send({
         success: true,
